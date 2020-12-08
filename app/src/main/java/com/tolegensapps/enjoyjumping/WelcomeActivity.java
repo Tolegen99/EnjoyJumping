@@ -25,6 +25,8 @@ public class WelcomeActivity extends AppCompatActivity {
     private EditText inputPassword;
     private TextView linkGoToRegister;
 
+    private final LoadingDialog mLoadingDialog = new LoadingDialog(WelcomeActivity.this);
+
     private Button btnLogin;
 
     @Override
@@ -70,6 +72,8 @@ public class WelcomeActivity extends AppCompatActivity {
         CharSequence email = inputEmail.getText();
         CharSequence password = inputPassword.getText();
 
+        mLoadingDialog.startLoadingDialog();
+
         Backendless.UserService.login(email.toString(), password.toString(), new AsyncCallback<BackendlessUser>() {
             public void handleResponse(BackendlessUser user) {
 
@@ -78,6 +82,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 Intent intentToProfile = new Intent(WelcomeActivity.this, MainActivity.class);
                 intentToProfile.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                mLoadingDialog.dismissDialog();
                 startActivity(intentToProfile);
                 finish();
             }
