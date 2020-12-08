@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Enjoy Jumping</string>
+    <!--    Bottom Navigation View-->
+    <string name="title_qr_scan">Сканировать Код</string>
+    <string name="title_schedules">Занятия</string>
+    <string name="title_profile">Профиль</string>
+    <!--    WelcomeActiviy-->
+    <string name="already_have_an_accaunt">Уже есть Аккаунт?</string>
+    <string name="password">Пароль</string>
+    <string name="login">ВОЙТИ</string>
+    <string name="forgot_password">ЗАБЫЛИ ПАРОЛЬ?</string>
+    <string name="new_user_register_now">Новый пользователь? Создать Аккаунт</string>
+    <!--    RegisterActivity-->
+    <string name="label_register_name">Имя</string>
+    <string name="label_register_surname">Фамилия</string>
+    <string name="label_register_phone_number">Номер мобильного телефона</string>
+    <string name="label_register_create_password">Придумайте пароль</string>
+    <string name="label_register_create_password_repeat">Повторите пароль</string>
+
+    <!--    loading messages -->
+    <string name="loading_empty">Loading…</string>
+    <string name="loading_register">Sending registration request…</string>
+    <string name="loading_login">Logging in…</string>
+
+    <string name="info_logged_in">Logged in. ObjectId: %s</string>
+    <string name="label_register_email">Эллектронная почта</string>
+
+    <string name="registration_success">Успешно зарегистрирован!</string>
+    <string name="registration_error">Ошибка регистрации!</string>
+    <string name="registration_success_message">Спасибо за регистрацию в %1$s.</string>
+
+
+
+
+</resources>
