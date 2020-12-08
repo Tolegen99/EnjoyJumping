@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 
 public class LoadingDialog {
 
+
     Activity mActivity;
     AlertDialog mDialog;
 
