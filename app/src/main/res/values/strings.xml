@@ -28,8 +28,7 @@
     <string name="registration_success">Успешно зарегистрирован!</string>
     <string name="registration_error">Ошибка регистрации!</string>
     <string name="registration_success_message">Спасибо за регистрацию в %1$s.</string>
-
-
+    <string name="just_a_second">Секундочку...</string>
 
 
 </resources>
