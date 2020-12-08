@@ -24,6 +24,7 @@ public class LoadingDialog {
         mDialog.show();
     }
 
+
     void dismissDialog() {
         mDialog.dismiss();
     }
