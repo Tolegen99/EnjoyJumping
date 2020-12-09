@@ -26,6 +26,8 @@ public class ProfileFragment extends Fragment {
 
     private static String userId;
 
+
+
     private ProgressBar progressBar;
     private static TextView fieldNumberOfVisits;
     private TextView fieldUserName;
@@ -64,12 +66,16 @@ public class ProfileFragment extends Fragment {
         fieldUserName = inflatedView.findViewById(R.id.fieldUserName);
         fieldUserEmail = inflatedView.findViewById(R.id.fieldUserEmail);
         fieldEveningSub = inflatedView.findViewById(R.id.fieldEveningSub);
+
     }
 
     private void initUIBehaviour() {
+//        Выйти из аккаунта
         fieldLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LoadingDialog loadingDialog = new LoadingDialog(getActivity());
+                loadingDialog.startLoadingDialog();
                 Backendless.UserService.logout(new AsyncCallback<Void>() {
 
                     @Override

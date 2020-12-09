@@ -24,7 +24,6 @@ public class LoadingDialog {
         mDialog = builder.create();
         mDialog.show();
     }
-// where is my changes
 
     void dismissDialog() {
         mDialog.dismiss();
