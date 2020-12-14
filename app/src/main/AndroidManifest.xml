@@ -10,18 +10,19 @@
         android:roundIcon="@mipmap/enjoy_jumping"
         android:supportsRtl="true"
 
+
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanCodeActivity"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".ScanCodeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".WelcomeActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
         </activity>
     </application>
