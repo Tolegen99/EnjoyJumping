@@ -55,11 +55,9 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         String txtResult = String.valueOf(result);
         if (txtResult.equals("EnjoyJumping")) {
             debuctOneTimeVisit();
-            Log.w("MYAPP", String.valueOf(result));
-//            MainActivity.qrScanSuccess = true;
+
         } else {
-            Log.e("MYAPP", "0");
-//            MainActivity.qrScanSuccess = false;
+
         }
         onBackPressed();
     }
@@ -92,20 +90,22 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
         Backendless.Data.of(BackendlessUser.class).findById(Backendless.UserService.loggedInUser(), new AsyncCallback<BackendlessUser>() {
             @Override
             public void handleResponse(BackendlessUser user) {
-                int count = (int) user.getProperty("numberOfVisits");
-                count--;
-                user.setProperty("numberOfVisits", count);
-                Backendless.Data.of(BackendlessUser.class).save(user, new AsyncCallback<BackendlessUser>() {
-                    @Override
-                    public void handleResponse(BackendlessUser response) {
+                int count = (int) user.getProperty("ticketNumberOfVisits");
+                if(count > 0) {
+                    count--;
+                    user.setProperty("ticketNumberOfVisits", count);
+                    Backendless.Data.of(BackendlessUser.class).save(user, new AsyncCallback<BackendlessUser>() {
 
-                    }
+                        @Override
+                        public void handleResponse(BackendlessUser response) {
+                        }
 
-                    @Override
-                    public void handleFault(BackendlessFault fault) {
-
-                    }
-                });
+                        @Override
+                        public void handleFault(BackendlessFault fault) {
+                        }
+                    });
+                } else
+                    Log.d("MYAPP", "Мало");
             }
 
             @Override
