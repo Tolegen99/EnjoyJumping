@@ -1,9 +1,12 @@
 package com.tolegensapps.enjoyjumping;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -76,20 +79,24 @@ public class WelcomeActivity extends AppCompatActivity {
 
         Backendless.UserService.login(email.toString(), password.toString(), new AsyncCallback<BackendlessUser>() {
             public void handleResponse(BackendlessUser user) {
-
-                Toast toast = Toast.makeText(getApplicationContext(), "Вход прошел успешно", Toast.LENGTH_SHORT);
-                toast.show();
-
+                mLoadingDialog.dismissDialog();
                 Intent intentToProfile = new Intent(WelcomeActivity.this, MainActivity.class);
                 intentToProfile.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                mLoadingDialog.dismissDialog();
                 startActivity(intentToProfile);
                 finish();
             }
 
             public void handleFault(BackendlessFault fault) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Неа(", Toast.LENGTH_SHORT);
-                toast.show();
+                mLoadingDialog.dismissDialog();
+                AlertDialog.Builder builder = new AlertDialog.Builder(WelcomeActivity.this);
+                builder.setMessage(fault.getMessage()).setTitle(R.string.login_error)
+                        .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         }, true);
     }

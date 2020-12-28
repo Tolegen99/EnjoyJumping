@@ -3,6 +3,7 @@ package com.tolegensapps.enjoyjumping;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String email;
     private String password;
 
+    private final LoadingDialog mLoadingDialog = new LoadingDialog(RegisterActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void onRegisterButtonClicked() {
+
+        mLoadingDialog.startLoadingDialog();
 
         BackendlessUser user = new BackendlessUser();  //Объект user для регистрации(Логин, пароль)
 
@@ -116,20 +120,32 @@ public class RegisterActivity extends AppCompatActivity {
         Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>() {
             @Override
             public void handleResponse(final BackendlessUser createdUser) {
+                mLoadingDialog.dismissDialog();
                 Resources resources = getResources();
                 String message = String.format(resources.getString(R.string.registration_success_message), resources.getString(R.string.app_name));
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                builder.setMessage(message).setTitle(R.string.registration_success);
+                builder.setMessage(message).setTitle(R.string.registration_success)
+                        .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                goToWelcomeActInt();
+                            }
+                        });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                goToWelcomeActInt();
-
                 }
 
             @Override
             public void handleFault(BackendlessFault fault) {
+                mLoadingDialog.dismissDialog();
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                builder.setMessage(fault.getMessage()).setTitle(R.string.registration_error);
+                builder.setMessage(fault.getMessage()).setTitle(R.string.registration_error)
+                        .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                goToWelcomeActInt();
+                            }
+                        });
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }

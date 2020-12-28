@@ -16,14 +16,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgProfile"
-        android:layout_width="100dp"
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation"
+        android:layout_width="200dp"
         android:layout_height="100dp"
-        android:src="@drawable/profile_example"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topView" />
+        app:layout_constraintEnd_toEndOf="@+id/topView"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="@+id/topView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/girl_looking" />
 
     <TextView
         android:id="@+id/fieldUserName"
@@ -34,7 +38,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/animation" />
 
     <View
         android:id="@+id/view5"

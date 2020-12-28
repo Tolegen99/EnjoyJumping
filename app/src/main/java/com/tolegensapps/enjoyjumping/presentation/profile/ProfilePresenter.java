@@ -8,11 +8,12 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.DataQueryBuilder;
 import com.backendless.rt.data.EventHandler;
+import com.tolegensapps.enjoyjumping.LoadingDialog;
 
 import java.util.List;
 
 public class ProfilePresenter {
-    void initProfileData(final ProfileFragment profileFragment, String userId) {
+    void initProfileData(final ProfileFragment profileFragment, String userId, final LoadingDialog loadingDialog) {
 
 //        Заполнение Профиля данными юзера
 
@@ -24,6 +25,7 @@ public class ProfilePresenter {
                 ProfileFragment.fieldNumberOfVisits.setText(String.valueOf(user.getProperty("ticketNumberOfVisits")));
                 profileFragment.fieldEveningSub.setText(checkEveningTrue((boolean) user.getProperty("ticketEveningSub")));
                 profileFragment.progressBar.setProgress(transferToProgressValue((int) user.getProperty("ticketNumberOfVisits")));
+                loadingDialog.dismissDialog();
 
             }
 
@@ -32,6 +34,7 @@ public class ProfilePresenter {
 
             }
         });
+
 
 //        Слушатель для реал тайм базы данных в случае изминения информации
 

@@ -30,5 +30,7 @@
     <string name="registration_success_message">Спасибо за регистрацию в %1$s.</string>
     <string name="just_a_second">Секундочку...</string>
 
+    <string name="login_error">Ошибка входа!</string>
+
 
 </resources>

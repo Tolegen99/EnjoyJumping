@@ -35,10 +35,15 @@ public class ProfileFragment extends Fragment {
 
     protected TextView fieldLogout;
 
+    LoadingDialog mLoadingDialog;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View inflatedView = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        mLoadingDialog = new LoadingDialog(getActivity());
+        mLoadingDialog.startLoadingDialog();
 
         mUserId = getArguments().getString("objectId");
 
@@ -46,8 +51,10 @@ public class ProfileFragment extends Fragment {
 
         initUI(inflatedView);
         initUIBehaviour();
-        profilePresenter.initProfileData(this, mUserId);
+        profilePresenter.initProfileData(this, mUserId, mLoadingDialog);
         return inflatedView;
+
+
     }
 
     @Override
@@ -75,8 +82,8 @@ public class ProfileFragment extends Fragment {
         fieldLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoadingDialog loadingDialog = new LoadingDialog(getActivity());
-                loadingDialog.startLoadingDialog();
+//                LoadingDialog loadingDialog = new LoadingDialog(getActivity());
+                mLoadingDialog.startLoadingDialog();
                 Backendless.UserService.logout(new AsyncCallback<Void>() {
 
                     @Override
