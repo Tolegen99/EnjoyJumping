@@ -11,12 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.tolegensapps.enjoyjumping.CreateTableActivity;
 import com.tolegensapps.enjoyjumping.LoadingDialog;
 import com.tolegensapps.enjoyjumping.R;
 import com.tolegensapps.enjoyjumping.WelcomeActivity;
@@ -32,6 +34,7 @@ public class ProfileFragment extends Fragment {
     protected TextView fieldUserName;
     protected TextView fieldUserEmail;
     protected TextView fieldEveningSub;
+    protected Button mBtnEdit;
 
     protected TextView fieldLogout;
 
@@ -57,12 +60,12 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("");
-
-    }
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("");
+//
+//    }
 
 
     private void initUI(View inflatedView) {
@@ -75,6 +78,8 @@ public class ProfileFragment extends Fragment {
         fieldUserEmail = inflatedView.findViewById(R.id.fieldUserEmail);
         fieldEveningSub = inflatedView.findViewById(R.id.fieldEveningSub);
 
+        mBtnEdit = inflatedView.findViewById(R.id.btnEdit);
+
     }
 
     private void initUIBehaviour() {
@@ -82,13 +87,12 @@ public class ProfileFragment extends Fragment {
         fieldLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                LoadingDialog loadingDialog = new LoadingDialog(getActivity());
                 mLoadingDialog.startLoadingDialog();
                 Backendless.UserService.logout(new AsyncCallback<Void>() {
 
                     @Override
                     public void handleResponse(Void response) {
-                        Intent intentLogout = new Intent(getActivity().getApplication(), WelcomeActivity.class);
+                        Intent intentLogout = new Intent(getActivity(), WelcomeActivity.class);
                         startActivity(intentLogout);
                         Log.w("MYAPP", "Yes");
                     }
@@ -100,6 +104,17 @@ public class ProfileFragment extends Fragment {
                 });
             }
         });
+
+        mBtnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CreateTableActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
 

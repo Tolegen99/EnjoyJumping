@@ -36,7 +36,7 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        Backendless.initApp(this, "FD8D6BE5-7744-F25A-FF7D-F337498C1300", "EB9A0F63-6CF2-496F-A8B4-B80D0D6ED6E2");
+        Backendless.initApp(this, "56E21695-ED53-450B-9C95-851952ED7136", "EB9A0F63-6CF2-496F-A8B4-B80D0D6ED6E2");
 
         String userToken = UserTokenStorageFactory.instance().getStorage().get();
 

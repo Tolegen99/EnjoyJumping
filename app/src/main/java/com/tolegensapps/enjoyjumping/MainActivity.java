@@ -3,35 +3,36 @@ package com.tolegensapps.enjoyjumping;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.backendless.Backendless;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tolegensapps.enjoyjumping.presentation.profile.ProfileFragment;
-import com.tolegensapps.enjoyjumping.presentation.schedule.ScheduleFragment;
+import com.tolegensapps.enjoyjumping.presentation.schedule.TimetableFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomAppBar bottomAppBar;
     private String objectId;
-    FloatingActionButton btnScanCode;
+    public static FloatingActionButton btnScanCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         objectId = Backendless.UserService.loggedInUser();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
 
         startProfile(objectId);
         initUIBehaviour();
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         btnScanCode = findViewById(R.id.btnScanCode);
         bottomAppBar = findViewById(R.id.bottomAppBar);
 
+
+
         btnScanCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selectedFragment = null;
                 switch (item.getItemId()) {
                     case R.id.navigation_schedule:
-                        selectedFragment = new ScheduleFragment();
+                        selectedFragment = new TimetableFragment();
                         break;
                     case R.id.navigation_profile:
                         selectedFragment = new ProfileFragment();
