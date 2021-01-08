@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.backendless.Backendless;
@@ -27,14 +26,14 @@ public class ProfileFragment extends Fragment {
 
     ProfilePresenter profilePresenter;
 
-    protected ProgressBar progressBar;
-    protected static TextView fieldNumberOfVisits;
-    protected TextView fieldUserName;
-    protected TextView fieldUserEmail;
-    protected TextView fieldEveningSub;
+    protected static TextView mFieldNumberOfVisits;
+    protected static TextView mFieldUserName;
+    protected static TextView mFieldUserEmail;
+    protected static TextView mFieldEveningSub;
+    protected static TextView mFieldValidity;
     protected Button mBtnEdit;
 
-    protected TextView fieldLogout;
+    protected TextView mFieldLogout;
 
     LoadingAlertDialog mLoadingAlertDialog;
 
@@ -52,21 +51,21 @@ public class ProfileFragment extends Fragment {
 
         initUI(inflatedView);
         initUIBehaviour();
-        profilePresenter.initProfileData(this, mUserId, mLoadingAlertDialog);
+        profilePresenter.initProfileData(mUserId, mLoadingAlertDialog);
         return inflatedView;
 
 
     }
 
     private void initUI(View inflatedView) {
-        fieldNumberOfVisits = inflatedView.findViewById(R.id.fieldNumberOfVisits);
-        fieldEveningSub = inflatedView.findViewById(R.id.fieldEveningSub);
-        progressBar = inflatedView.findViewById(R.id.progressBarNumbOfVisits);
-        fieldLogout = inflatedView.findViewById(R.id.fieldLogout);
+        mFieldNumberOfVisits = inflatedView.findViewById(R.id.fieldNumberOfVisits);
+        mFieldEveningSub = inflatedView.findViewById(R.id.fieldEveningSub);
+        mFieldLogout = inflatedView.findViewById(R.id.fieldLogout);
 
-        fieldUserName = inflatedView.findViewById(R.id.fieldUserName);
-        fieldUserEmail = inflatedView.findViewById(R.id.fieldUserEmail);
-        fieldEveningSub = inflatedView.findViewById(R.id.fieldEveningSub);
+        mFieldUserName = inflatedView.findViewById(R.id.fieldUserName);
+        mFieldUserEmail = inflatedView.findViewById(R.id.fieldUserEmail);
+        mFieldEveningSub = inflatedView.findViewById(R.id.fieldEveningSub);
+        mFieldValidity = inflatedView.findViewById(R.id.field_validity);
 
         mBtnEdit = inflatedView.findViewById(R.id.btnEdit);
 
@@ -74,7 +73,7 @@ public class ProfileFragment extends Fragment {
 
     private void initUIBehaviour() {
 //        Выйти из аккаунта
-        fieldLogout.setOnClickListener(new View.OnClickListener() {
+        mFieldLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLoadingAlertDialog.startLoadingDialog();

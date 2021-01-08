@@ -5,11 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    android:layout_marginTop="15dp"
-    android:layout_marginBottom="15dp"
     android:layout_marginStart="25dp"
+    android:layout_marginTop="15dp"
     android:layout_marginEnd="25dp"
-    >
+    android:layout_marginBottom="15dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0.0px"
+    app:cardBackgroundColor="#EDEAEA"
+    app:cardElevation="20dp"
+    app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

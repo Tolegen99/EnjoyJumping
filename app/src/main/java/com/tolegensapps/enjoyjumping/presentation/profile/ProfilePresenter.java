@@ -9,18 +9,27 @@ import com.tolegensapps.enjoyjumping.LoadingAlertDialog;
 
 public class ProfilePresenter {
 
-    void initProfileData(final ProfileFragment profileFragment, String userId, final LoadingAlertDialog loadingAlertDialog) {
+    void initProfileData(String userId, final LoadingAlertDialog loadingAlertDialog) {
 
 //        Заполнение Профиля данными юзера
 
         Backendless.Data.of(BackendlessUser.class).findById(userId, new AsyncCallback<BackendlessUser>() {
             @Override
             public void handleResponse(BackendlessUser user) {
-                profileFragment.fieldUserName.setText(String.valueOf(user.getProperty("userName")));
-                profileFragment.fieldUserEmail.setText(String.valueOf(user.getEmail()));
-                ProfileFragment.fieldNumberOfVisits.setText(String.valueOf(user.getProperty("ticketNumberOfVisits")));
-                profileFragment.fieldEveningSub.setText(checkEveningTrue((boolean) user.getProperty("ticketEveningSub")));
-                profileFragment.progressBar.setProgress(transferToProgressValue((int) user.getProperty("ticketNumberOfVisits")));
+
+                StringBuilder stringBuilder = new StringBuilder(String.valueOf(user.getProperty("ticketValidity")));
+                StringBuilder str2 = stringBuilder.delete(10, 29)
+                        .delete(0, 4);
+
+
+
+
+
+                ProfileFragment.mFieldUserName.setText(String.valueOf(user.getProperty("userName")));
+                ProfileFragment.mFieldUserEmail.setText(String.valueOf(user.getEmail()));
+                ProfileFragment.mFieldNumberOfVisits.setText(String.valueOf(user.getProperty("ticketNumberOfVisits")));
+                ProfileFragment.mFieldEveningSub.setText(checkEveningTrue((boolean) user.getProperty("ticketEveningSub")));
+                ProfileFragment.mFieldValidity.setText(str2);
                 loadingAlertDialog.dismissDialog();
 
             }
@@ -39,11 +48,18 @@ public class ProfilePresenter {
 
             @Override
             public void handleResponse(BackendlessUser user) {
-                profileFragment.fieldUserName.setText(String.valueOf(user.getProperty("userName")));
-                profileFragment.fieldUserEmail.setText(String.valueOf(user.getEmail()));
-                ProfileFragment.fieldNumberOfVisits.setText(String.valueOf(user.getProperty("ticketNumberOfVisits")));
-                profileFragment.fieldEveningSub.setText(checkEveningTrue((boolean) user.getProperty("ticketEveningSub")));
-                profileFragment.progressBar.setProgress(transferToProgressValue((int) user.getProperty("ticketNumberOfVisits")));
+
+                StringBuilder stringBuilder = new StringBuilder(String.valueOf(user.getProperty("ticketValidity")));
+                StringBuilder str2 = stringBuilder.delete(10, 29)
+                        .delete(0, 4);
+
+
+
+                ProfileFragment.mFieldUserName.setText(String.valueOf(user.getProperty("userName")));
+                ProfileFragment.mFieldUserEmail.setText(String.valueOf(user.getEmail()));
+                ProfileFragment.mFieldNumberOfVisits.setText(String.valueOf(user.getProperty("ticketNumberOfVisits")));
+                ProfileFragment.mFieldEveningSub.setText(checkEveningTrue((boolean) user.getProperty("ticketEveningSub")));
+                ProfileFragment.mFieldValidity.setText(str2);
             }
 
             @Override
