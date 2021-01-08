@@ -2,25 +2,20 @@ package com.tolegensapps.enjoyjumping;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.local.UserTokenStorageFactory;
-import com.tolegensapps.enjoyjumping.R;
-import com.tolegensapps.enjoyjumping.RegisterActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -28,7 +23,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private EditText inputPassword;
     private TextView linkGoToRegister;
 
-    private final LoadingDialog mLoadingDialog = new LoadingDialog(WelcomeActivity.this);
+    private final LoadingAlertDialog mLoadingAlertDialog = new LoadingAlertDialog(WelcomeActivity.this);
 
     private Button btnLogin;
 
@@ -75,11 +70,11 @@ public class WelcomeActivity extends AppCompatActivity {
         CharSequence email = inputEmail.getText();
         CharSequence password = inputPassword.getText();
 
-        mLoadingDialog.startLoadingDialog();
+        mLoadingAlertDialog.startLoadingDialog();
 
         Backendless.UserService.login(email.toString(), password.toString(), new AsyncCallback<BackendlessUser>() {
             public void handleResponse(BackendlessUser user) {
-                mLoadingDialog.dismissDialog();
+                mLoadingAlertDialog.dismissDialog();
                 Intent intentToProfile = new Intent(WelcomeActivity.this, MainActivity.class);
                 intentToProfile.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intentToProfile);
@@ -87,7 +82,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
 
             public void handleFault(BackendlessFault fault) {
-                mLoadingDialog.dismissDialog();
+                mLoadingAlertDialog.dismissDialog();
                 AlertDialog.Builder builder = new AlertDialog.Builder(WelcomeActivity.this);
                 builder.setMessage(fault.getMessage()).setTitle(R.string.login_error)
                         .setPositiveButton("Ок", new DialogInterface.OnClickListener() {

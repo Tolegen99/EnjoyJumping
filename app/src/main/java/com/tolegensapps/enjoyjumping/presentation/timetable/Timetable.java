@@ -1,6 +1,4 @@
-package com.tolegensapps.enjoyjumping.presentation.schedule;
-
-import java.util.Date;
+package com.tolegensapps.enjoyjumping.presentation.timetable;
 
 public class Timetable {
     public String time;

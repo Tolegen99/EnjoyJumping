@@ -1,26 +1,19 @@
 package com.tolegensapps.enjoyjumping;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.backendless.Backendless;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tolegensapps.enjoyjumping.presentation.profile.ProfileFragment;
-import com.tolegensapps.enjoyjumping.presentation.schedule.TimetableFragment;
+import com.tolegensapps.enjoyjumping.presentation.timetable.TimetableFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 

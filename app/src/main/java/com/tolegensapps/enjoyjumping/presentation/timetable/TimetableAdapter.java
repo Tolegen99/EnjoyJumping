@@ -1,4 +1,4 @@
-package com.tolegensapps.enjoyjumping.presentation.schedule;
+package com.tolegensapps.enjoyjumping.presentation.timetable;
 
 import android.view.LayoutInflater;
 import android.view.View;

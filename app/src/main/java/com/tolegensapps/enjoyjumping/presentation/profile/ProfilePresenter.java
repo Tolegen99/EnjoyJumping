@@ -1,19 +1,15 @@
 package com.tolegensapps.enjoyjumping.presentation.profile;
 
-import android.util.Log;
-
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
-import com.backendless.persistence.DataQueryBuilder;
 import com.backendless.rt.data.EventHandler;
-import com.tolegensapps.enjoyjumping.LoadingDialog;
-
-import java.util.List;
+import com.tolegensapps.enjoyjumping.LoadingAlertDialog;
 
 public class ProfilePresenter {
-    void initProfileData(final ProfileFragment profileFragment, String userId, final LoadingDialog loadingDialog) {
+
+    void initProfileData(final ProfileFragment profileFragment, String userId, final LoadingAlertDialog loadingAlertDialog) {
 
 //        Заполнение Профиля данными юзера
 
@@ -25,7 +21,7 @@ public class ProfilePresenter {
                 ProfileFragment.fieldNumberOfVisits.setText(String.valueOf(user.getProperty("ticketNumberOfVisits")));
                 profileFragment.fieldEveningSub.setText(checkEveningTrue((boolean) user.getProperty("ticketEveningSub")));
                 profileFragment.progressBar.setProgress(transferToProgressValue((int) user.getProperty("ticketNumberOfVisits")));
-                loadingDialog.dismissDialog();
+                loadingAlertDialog.dismissDialog();
 
             }
 

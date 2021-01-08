@@ -32,11 +32,5 @@
 
     <string name="login_error">Ошибка входа!</string>
 
-    <string-array name="days">
-        <item>Сегодня</item>
-        <item>Завтра</item>
-        <item>Послезавтра</item>
-    </string-array>
-
 
 </resources>

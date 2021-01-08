@@ -3,8 +3,6 @@ package com.tolegensapps.enjoyjumping.presentation.profile;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -19,7 +17,7 @@ import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.tolegensapps.enjoyjumping.CreateTableActivity;
-import com.tolegensapps.enjoyjumping.LoadingDialog;
+import com.tolegensapps.enjoyjumping.LoadingAlertDialog;
 import com.tolegensapps.enjoyjumping.R;
 import com.tolegensapps.enjoyjumping.WelcomeActivity;
 
@@ -38,15 +36,15 @@ public class ProfileFragment extends Fragment {
 
     protected TextView fieldLogout;
 
-    LoadingDialog mLoadingDialog;
+    LoadingAlertDialog mLoadingAlertDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View inflatedView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        mLoadingDialog = new LoadingDialog(getActivity());
-        mLoadingDialog.startLoadingDialog();
+        mLoadingAlertDialog = new LoadingAlertDialog(getActivity());
+        mLoadingAlertDialog.startLoadingDialog();
 
         mUserId = getArguments().getString("objectId");
 
@@ -54,19 +52,11 @@ public class ProfileFragment extends Fragment {
 
         initUI(inflatedView);
         initUIBehaviour();
-        profilePresenter.initProfileData(this, mUserId, mLoadingDialog);
+        profilePresenter.initProfileData(this, mUserId, mLoadingAlertDialog);
         return inflatedView;
 
 
     }
-
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("");
-//
-//    }
-
 
     private void initUI(View inflatedView) {
         fieldNumberOfVisits = inflatedView.findViewById(R.id.fieldNumberOfVisits);
@@ -87,7 +77,7 @@ public class ProfileFragment extends Fragment {
         fieldLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mLoadingDialog.startLoadingDialog();
+                mLoadingAlertDialog.startLoadingDialog();
                 Backendless.UserService.logout(new AsyncCallback<Void>() {
 
                     @Override

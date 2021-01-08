@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +17,6 @@ import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
-
-import java.util.ArrayList;
 
 public class RegisterActivity extends AppCompatActivity {
     private final static java.text.SimpleDateFormat SIMPLE_DATE_FORMAT = new java.text.SimpleDateFormat("yyyy/MM/dd");
@@ -35,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String email;
     private String password;
 
-    private final LoadingDialog mLoadingDialog = new LoadingDialog(RegisterActivity.this);
+    private final LoadingAlertDialog mLoadingAlertDialog = new LoadingAlertDialog(RegisterActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void onRegisterButtonClicked() {
 
-        mLoadingDialog.startLoadingDialog();
+        mLoadingAlertDialog.startLoadingDialog();
 
         BackendlessUser user = new BackendlessUser();  //Объект user для регистрации(Логин, пароль)
 
@@ -120,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
         Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>() {
             @Override
             public void handleResponse(final BackendlessUser createdUser) {
-                mLoadingDialog.dismissDialog();
+                mLoadingAlertDialog.dismissDialog();
                 Resources resources = getResources();
                 String message = String.format(resources.getString(R.string.registration_success_message), resources.getString(R.string.app_name));
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
@@ -137,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void handleFault(BackendlessFault fault) {
-                mLoadingDialog.dismissDialog();
+                mLoadingAlertDialog.dismissDialog();
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                 builder.setMessage(fault.getMessage()).setTitle(R.string.registration_error)
                         .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
