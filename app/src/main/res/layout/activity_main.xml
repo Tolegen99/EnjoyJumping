@@ -29,7 +29,9 @@
         android:layout_height="wrap_content"
         app:layout_anchor="@id/bottomAppBar"
         app:srcCompat="@drawable/qr_code_scanner"
-        android:backgroundTint="#00cba9"
+        android:backgroundTint="@color/colorPrimary"
+        app:tint="@color/colorWhite"
+
         />
 
 

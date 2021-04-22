@@ -19,6 +19,9 @@ import com.backendless.persistence.local.UserTokenStorageFactory;
 
 public class WelcomeActivity extends AppCompatActivity {
 
+    private final static String APPLICATION_ID = "E4C4DA74-3C08-A467-FF5C-BCB54B096600";
+    private final static String SECRET_KEY = "16737C3E-7FCF-4AB8-8589-6BE76F4FF57A";
+    private final static String SERVER_URL = "https://eu-api.backendless.com";
     private EditText inputEmail;
     private EditText inputPassword;
     private TextView linkGoToRegister;
@@ -31,7 +34,8 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        Backendless.initApp(this, "56E21695-ED53-450B-9C95-851952ED7136", "EB9A0F63-6CF2-496F-A8B4-B80D0D6ED6E2");
+        Backendless.setUrl(SERVER_URL);
+        Backendless.initApp(this, APPLICATION_ID, SECRET_KEY);
 
         String userToken = UserTokenStorageFactory.instance().getStorage().get();
 

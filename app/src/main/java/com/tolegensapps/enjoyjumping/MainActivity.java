@@ -8,8 +8,10 @@ import android.view.View;
 import com.backendless.Backendless;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.tolegensapps.enjoyjumping.presentation.profile.ProfileFragment;
-import com.tolegensapps.enjoyjumping.presentation.timetable.TimetableFragment;
+
+
+import com.tolegensapps.enjoyjumping.profile.ProfileFragment;
+import com.tolegensapps.enjoyjumping.timetable.TimetableFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

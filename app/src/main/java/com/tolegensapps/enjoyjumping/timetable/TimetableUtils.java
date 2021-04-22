@@ -1,8 +1,7 @@
-package com.tolegensapps.enjoyjumping.presentation.timetable;
+package com.tolegensapps.enjoyjumping.timetable;
 
 import android.app.Activity;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,12 +13,12 @@ import com.tolegensapps.enjoyjumping.MainActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TimetablePresenter {
+public class TimetableUtils {
 
     private RecyclerView mRecyclerView;
     private List<Timetable> mTimetables = new ArrayList<>();
 
-    public TimetablePresenter(RecyclerView recyclerView) {
+    public TimetableUtils(RecyclerView recyclerView) {
         mRecyclerView = recyclerView;
     }
 
